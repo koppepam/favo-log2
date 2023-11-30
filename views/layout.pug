@@ -3,5 +3,28 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    
+    meta(name="viewport" content="width=device-width,initial-scale=1")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css")
+    link(rel="stylesheet",
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",
+    crossorigin="anonymous")
+
+    nav.navbar.navbar-expand-md.navbar-light.bg-light
+      div.container-fluid
+        a.navbar-brand(href="/") お気に入り記録 #[i.bi.bi-bookmark-heart]
+        button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation")
+          span.navbar-toggler-icon
+        div#navbarResponsive.collapse.navbar-collapse
+          ul.navbar-nav.ms-auto
+            if user
+              li.nav-item
+                a(href="/logout").nav-link #{user.username} をログアウト
+            else
+              li.nav-item
+                a(href="/login").nav-link ログイン
+
   body
     block content
+    script(src="/javascripts/bundle.js")

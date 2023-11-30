@@ -1,0 +1,21 @@
+extends layout 
+
+block content 
+  div.card
+    div.card-header
+      span.badge.bg-warning.text-dark 共有された投稿
+      span.h4.float-left(style="white-space:pre;") #{post.title}
+      form(method="post" action=`/posts/${post.postId}/delete`)
+        input(type="hidden" name="_csrf" value!=csrfToken)
+        button(type="submit").btn.btn-danger.float-right #[i.bi.bi-trash] 削除
+      button(type="button" class="share-button" data-post-id=post.postId).btn.btn-success.float-right #[i.bi.bi-share] 共有
+    div.card-body
+      div.d-flex.align-items-center.justify-content-between
+        h5 #{user.username} 
+        small #{post.formattedUpdatedAt} 
+      hr
+      p.card-text(style="white-space:pre; overflow:auto;") #{post.body}
+    
+  a(href="/").btn.btn-primary.mt-3.mb-3 投稿一覧を見る
+  //- - const cardTitle = card.querySelector('div.card-header > span');
+  //- cardTitle.innerHTML += `    <span class="badge bg-warning text-dark">共有された投稿</span>`;
